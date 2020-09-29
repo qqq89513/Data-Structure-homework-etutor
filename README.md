@@ -11,6 +11,9 @@ The following discriptions are mostly in chinese because I copy them directly fr
   4 6 3 69 234  | 234 69 3 6 4
   56 89 23 3 1  | 1 3 23 89 56
 
+
+
+
 ### C_AR04 邊緣偵測
 - 題目描述  
   一個二元圖形通常用一個二維陣列表示，其中的值為0或1，即為淺色（以1表）圖形在深色（以0表）的背景中。在分析圖形時往往需要找出其邊緣，稱之為邊緣偵測。所謂”邊緣”即為一個1的pixel其上下左右至少有一個為0。寫一個程式讀入二元圖形，輸出該圖之邊緣。
@@ -26,6 +29,102 @@ The following discriptions are mostly in chinese because I copy them directly fr
 
 
 
+
+
+
+### C_AR07 有違反數獨的規則嗎
+- 問題描述  
+    輸入一個9*9的數字矩陣，其中每個元素均為0～9，其中0代表該格尚未填入數字。請撰寫一支程式判斷該矩陣是否符合數獨之規則。數獨的規則如下：
+    1. 矩陣中的每一列（9個元素）只能出現1~9至多各一次。
+    2. 矩陣中的每一行（9個元素）只能出現1~9至多各一次。
+    3. 9個3*3的小矩陣（9個元素），亦分別只能出現1~9至多各一次。
+- 輸入  
+  9*9的數字矩陣，其中每個元素均為0～9, 0代表該格尚未填入數字.
+- 輸出說明  
+    若該輸入符合數獨規則，則輸出 true
+    否則需輸出違反規則的列或行或區塊之編號，分別有三種：
+    1. 若為列違反規則，則輸出該列中違反規則之最小數字，格式為： row[?], #?，其中第1個’?’代表列編號；第2個’?’代表第一個違反的數字
+    2. 若為行違反規則，則輸出該行中違反規則之最小數字，格式為： column[?], #?，其中第1個’?’代表行編號；第2個’?’代表第一個違反的數字
+    3. 若為區塊違反規則，則輸出該區塊中違反規則之最小數字，格式為： block[?], #?，其中第1個’?’代表區塊編號；第2個’?’代表第一個違反的數字
+    注意，所有的行、列、區塊編號均為1～9；區塊的編號採row-major。以下是blcok的編號:  
+      1 2 3  
+      4 5 6  
+      7 8 9  
+    PS:因為原本題目有些地方會有爭議,所以在這裡補充，原本的題目在"中文題庫")  
+    若輸出不是true時, 則依序輸出各個row, column, block有錯誤的數字(即是在範圍內有重複)  
+    即使此數字在row和column都會重複出現, 也要分別印出來(例如下面範例2的row2 #9, column1 #9)  
+- 範例
+  輸入1 | 輸出1
+  ---------- | -----------
+  023456789   |true
+  456789123   |
+  789123456   |
+  231564897   |
+  564897231   |
+  897231564   |
+  312605978   |
+  645978312   |
+  908312645   |
+
+  輸入2 | 輸出2
+  ---------- | -----------
+  023450789   |row2 #5
+  956789523   |row2 #9
+  659723456   |row3 #5
+  231564807   |row3 #6
+  504897231   |column1 #6
+  897231564   |column1 #9
+  302605978   |column2 #5
+  605978412   |column4 #7
+  908312605   |column7 #4
+  &nbsp;      |column7 #5
+  &nbsp;      |block1 #5
+  &nbsp;      |block1 #6
+  &nbsp;      |block1 #9
+  &nbsp;      |block2 #7
+  &nbsp;      |block3 #5
+
+  輸入3 | 輸出3
+  ---------- | -----------
+  020456789   |row2 #9
+  496789123   |block1 #9
+  789123456   |
+  231564897   |
+  564897231   |
+  807231564   |
+  312605978   |
+  645978312   |
+  908312645   |
+  
+  輸入4 | 輸出4
+  ---------- | -----------
+  023452789   |row1 #2
+  156789123   |row2 #1
+  119123456   |row3 #1
+  231564827   |row4 #2
+  534897231   |row5 #3
+  897231564   |row8 #4
+  302605978   |colume1 #1
+  645978412   |colume2 #3
+  908312645   |colume6 #2
+  &nbsp;      |colume7 #4
+  &nbsp;      |colume8 #2
+  &nbsp;      |block1 #1
+  &nbsp;      |block2 #2
+  &nbsp;      |block4 #3
+  &nbsp;      |block6 #2
+  &nbsp;      |block9 #4
+
+### C_AR20 檢查數值是否有重複
+- 問題描述  
+Given a numerical array input, verified if any items are repetitive.  
+  input 1: First line is a number between 1~128, representing the item counts of the second line  
+  input 2: Second line is a numerical array input, spilted with space. Values of items are between 1 to the number input in the first line.
+  ouput:0 if any items are repetitive, 1 otherwise.
+- 範例
+  輸入 | 輸出
+  ------------- | -------------
+  8<br>1 4 6 2 3 5 8 7 | 1
 
 ### C_AR77 二維陣列反轉
 - 問題描述：
@@ -45,17 +144,22 @@ The following discriptions are mostly in chinese because I copy them directly fr
     6 5 4  
     3 2 1  
 
-### C_AR20 檢查數值是否有重複
+### AR128 巴斯卡三角形
 - 問題描述  
-Given a numerical array input, verified if any items are repetitive.  
-  input 1: First line is a number between 1~128, representing the item counts of the second line  
-  input 2: Second line is a numerical array input, spilted with space. Values of items are between 1 to the number input in the first line.
-  ouput:0 if any items are repetitive, 1 otherwise.
-
-- 範例
+  巴斯卡三角形（ Pascal's Triangle ）的頂端是 1 ，視為 row 0 。  
+  第 1 列 (row 1) 為兩個 1 ，這兩個 1 是由他們上頭左右兩數之和（不在三角形內的數視為 0 ）。  
+  依此類推產生第 2 列 (row 2): 0+1= 1 ; 1+1= 2 ; 1+0= 1 。第 3 列 (row 3): 0+1= 1 ; 1+2= 3 ; 2+1= 3 ; 1+0= 1 。  
+  循此法可以產生一巴斯卡三角形。  
+  每列由左而右各數，分別命名為第 0 元素，第 1 元素， … ，如此第 n 列第 r 元素是 (n!)/( r!*(n-r)! )。  
+  請寫一個程式將巴斯卡三角形中之指定列的指定元素印出來。每筆測試資料結果輸出於一行 ， 最後必須有換行字元 。
+- 輸入說明  
+  輸入檔中第一行為一個正整 數 N ( 0 N N 組測試資料。  
+  之後接下來有 N 行，每行有兩個整數，第一個整數 n，代表巴斯卡三角形中之第 n 列 ( 0 ≤ n ≤ 65 ) 第二個整數 m 代表該列由左而右第 m 個元素 ( 從 0 起算 ) 。
+- 範例  
   輸入 | 輸出
-  ------------- | -------------
-  8<br>1 4 6 2 3 5 8 7 | 1
+  ---- | ----
+  3<br>0 0<br>3 1<br>10 4 | 1<br>3<br>210
+
 
 ### C_AR146 最大值與最小值
 - 問題描述 ：
@@ -68,6 +172,7 @@ Given a numerical array input, verified if any items are repetitive.
   輸入 | 輸出
   ------------- | -------------
    -2 -15.2 0 89.5 100 25.3 7 30 76 4| maximum:100.00<br>minimum:-15.20
+
 
 ### C_BT03 正方形
 - 問題描述: 輸入線段的個數，以及每個線段的長度，判斷這些線段是否能夠組成一個三角形。
@@ -136,7 +241,6 @@ Given a numerical array input, verified if any items are repetitive.
       x = 5                     |
     第二個範例，4+3+(7*6)
       ( + 4 ( + 3 ( * 7 6) ) )   |49
-
 - 範例
   算式 | 輸入 | 輸出
   ----- | ------------- | -------------
@@ -152,7 +256,6 @@ Given a numerical array input, verified if any items are repetitive.
   請寫出一個程式輸入一個以空白分隔的數列，輸出最大的遞增子數列。
 - 輸入說明
   請任意輸入一串整數數列，可以有正、負號，任兩組數字之間要逗點。例如: -1,-9,2,7,0,11,-98
-
 - 輸出說明
   輸出最大遞增子數列，任兩組數字之間要逗點。例如:
   -1,2,7,11
@@ -177,12 +280,13 @@ Given a numerical array input, verified if any items are repetitive.
   5 個物品會作為輸入，成為長廊上的展示品。格式為： {name} {value} {weight} 分隔符號為一格空格，每輸入一個物品換一行。
 - 輸出說明  
   由背包上方開始依序取出並展示所偷到的物品，格式為： {name} {value} {weight} ，另顯示所偷物品之總重量weight:與總價值value:。
-
-
 - 範例
-  輸入 | 輸出
+  輸入1 | 輸出1
   ------------- | -------------
   b 50 2.5<br>c 100 16<br>d 52 1<br>e 55 1.5<br>f 60 2 | f 60.0 2.0<br>e 55.0 1.5<br>c 100.0 16.0<br>weight:19.5<br>value:215.0<br>
+
+  輸入2 | 輸出2
+  ------------- | -------------
   b 40 10.5<br>c 30 8.5<br>d 65 5<br>e 85 4.5<br>f 100 10<br> | f 100.0 10.0<br>e 85.0 4.5<br>d 65.0 5.0<br>weight:19.5<br>value:250.0<br>
 
 
@@ -231,6 +335,42 @@ Given a numerical array input, verified if any items are repetitive.
   ------------- | -------------
    2 3 4<br>1 2 2 4 0 7| 24<br>0
    1 2 3 4 5<br> 6 8 12 3 4 7 | 120<br>48384
+
+### C_RU02 河內塔遊戲
+- 問題描述  
+  河內塔遊戲中有三根支架 A 、 B 、 C ，每根支架最多可放 n 個大小不同、中心挖孔的圓盤，大圓盤不得放在小圓盤上面。  
+  起先 n 個圓盤均置於支架 A 上(如圖一所示，以 n=3 為例)。
+  今欲將這 n 個圓盤從支架 A 搬到支架 C ，每次只能搬一個盤子，支架 B 當作暫存處，請問共須搬動多少次的盤子才能完成？  
+  請寫一個非遞迴( non-recursive )程式來處理這個問題。為簡單起見，這 n 個圓盤以數字 1 到 n 來表示，大數字代表大盤子，圓盤置於支架之情形用橫式表示，請參考 Sample Output 。
+- 輸入說明  
+  輸入圓盤之個數 n ( 3 ≦ n ≦ 8 )
+- 輸出說明  
+  程式開始時顯示圓盤之個數n及支架A、B、C上圓盤放置情形(參考 Sample Output ，以 n=3 為例)，當搬動之次數為 5 之倍數( 5, 10, 15, … )時，需顯示 A 、 B 、 C 支架上圓盤放置之情形，並印出已經搬動盤子的次數。螢幕印滿後暫停，按任何鍵再繼續執行，直到完成後，顯示此 n 個盤子已搬至支架 C 上，並印出搬動之總次數。
+- 範例  
+  輸入:
+    3
+  輸出:
+    Number of Discs: 3
+    ***********************************
+    Initial State:
+    A: 3 2 1
+    B:
+    C:
+    ***********************************
+    After Moved 5 Times:
+    A: 1
+    B: 2
+    C: 3
+    ***********************************
+    :
+    :
+    :
+    ***********************************
+    Total Moved 7 Times:
+    A:
+    B:
+    C: 3 2 1
+
 
 ### C_SO52 泡沫排序法
 - 問題描述  
